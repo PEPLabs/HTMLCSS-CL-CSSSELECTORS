@@ -34,10 +34,7 @@ public class SeleniumTest {
         webDriver.get(path);
     }
 
-    @After
-    void teardown() {
-        webDriver.quit();
-    }
+    
 
     @Test
     public void testIdSelector() {
