@@ -10,32 +10,44 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SeleniumTest {
 
-    private WebDriver driver;
+    private WebDriver webDriver;
 
     @Before
     public void setUp() {
         // Set up ChromeDriver path
-        System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./driver/chromedriver");
+
+        // Get file
+        File file = new File("StyledPage.html");
+        String path = "file://" + file.getAbsolutePath();
 
         // Create a new ChromeDriver instance
-        driver = new ChromeDriver();
-        File file = new File("StyledPage.html");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        webDriver = new ChromeDriver(options);
+
         // Open the HTML file
-        driver.get(file.getAbsolutePath());
+        webDriver.get(path);
     }
-    
+
+    @After
+    void teardown() {
+        webDriver.quit();
+    }
+
     @Test
     public void testIdSelector() {
-        WebElement p2 = driver.findElement(By.id("p2"));
+        WebElement p2 = webDriver.findElement(By.id("p2"));
         assertEquals("rgba(255, 0, 0, 1)", p2.getCssValue("color"));
     }
 
     @Test
     public void testClassSelector() {
-        List<WebElement> elements = driver.findElements(By.className("class2"));
+        List<WebElement> elements = webDriver.findElements(By.className("class2"));
         for(WebElement element: elements) {
             assertEquals("rgba(0, 0, 255, 1)", element.getCssValue("color"));
         }
@@ -43,7 +55,7 @@ public class SeleniumTest {
 
     @Test
     public void testElementSelector() {
-        List<WebElement> elements = driver.findElements(By.cssSelector("h2"));
+        List<WebElement> elements = webDriver.findElements(By.cssSelector("h2"));
         for(WebElement element: elements) {
             assertEquals("rgba(0, 255, 255, 1)", element.getCssValue("color"));
         }
@@ -52,6 +64,6 @@ public class SeleniumTest {
     @After
     public void tearDown() {
         // Close the browser
-        driver.quit();
+        webDriver.quit();
     }
 }
