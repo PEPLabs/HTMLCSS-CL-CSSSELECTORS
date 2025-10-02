@@ -29,6 +29,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 
+
 public class SeleniumTest {
     private WebDriver webDriver;
     private WebDriverWait wait;
