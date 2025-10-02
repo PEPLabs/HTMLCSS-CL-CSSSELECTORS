@@ -3,15 +3,18 @@
 // into the other file without altering the test methods. //
 ////////////////////////////////////////////////////////////
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,8 +28,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SeleniumTest {
     private WebDriver webDriver;
@@ -43,7 +44,7 @@ public class SeleniumTest {
     private static final boolean IS_LINUX = OS_NAME.contains("linux");
     private static final boolean IS_MAC = OS_NAME.contains("mac");
   
-    @BeforeEach
+    @Before
     public void setUp() {
         try {
             printEnvironmentInfo();
@@ -534,7 +535,7 @@ public class SeleniumTest {
         }
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         System.out.println("\n=== TEARDOWN ===");
         cleanup();
