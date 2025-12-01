@@ -1,4 +1,6 @@
-# CSS Selectors Lab
+# DEPRECATED: CSS Selectors Lab
+# Use this instead: https://github.com/PEPLabs/HTMLCSS-CL-SELECTORS
+# -Kyle
 
 
 ## Description
